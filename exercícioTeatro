@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Teatro</title>
+<script language="Javascript">
+  var lugar, ind1, poltronas, xx;
+
+lugar = new Array();
+
+for(ind1=0; ind1<15; ind1++)
+  {
+      lugar[ind1] = false;
+  }
+
+  function reservar(qual)  
+  {
+    if (lugar[qual])
+      {
+        
+        alert("Este lugar ja esta ocupado!");
+      }
+      else
+      {
+        lugar[qual] = true;
+        document.getElementById("b" + qual).setAttribute("value","OCUPADO");
+        alert("Reserva efetuada com sucesso!");
+      }
+
+  }
+  function ocupacao() 
+  {
+    var porcentagem, ii;
+    porcentagem = 0;
+      for(ii=0; ii < lugar.length; ii++)
+      {
+          if (lugar[ii]==1)
+          {
+              porcentagem++;
+          }
+      }
+      alert((porcentagem / 600) * 100 + "% de lugares ocupados.");
+  }
+
+</script>
+</head>
+
+<body>
+    <style>
+        body
+        {
+            background-color: black;
+        }
+
+        td 
+        {
+            background-color: red;
+        }
+         
+    </style>
+    <form name="frm">
+        <script language="Javascript">
+
+        var lin, col;
+
+        document.write("<table border='1' align = 'center'>");
+        for(lin = 0; lin < 15; lin++)
+        {
+            document.write("<tr>");
+            for(col = 0; col < 40; col++)
+        {
+            document.write("<td align = 'center'>");
+            document.write("<input type='button' id='b" + lin + col + "' value='LIVRE' onclick='reservar(" + lin + col + ");'>");
+            document.write("</td>");
+        }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+  </script>
+   </form>
+   <table align = "center"><tr><td>
+    <input type="button" value="Total de lugares ocupados" onclick="ocupacao();">
+   </td></tr>
+</body>
+</html>
